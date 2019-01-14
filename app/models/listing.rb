@@ -18,21 +18,26 @@ class Listing
     self.trips.count
   end
   def self.find_all_by_city(cityName)
-    Trip.all.select { |obj| obj.listing.city == cityName}
+    Listing.all.select { |obj| obj.city == cityName}
+    #Trip.all.select { |obj| obj.listing.city == cityName}
+    #Mine choose only listings that were in a trip
   end
   def self.most_popular
-    max = 0
-    maxCity = []
-    current = 0
-    currentCity= []
-    Trip.all.each { |obj|
-      current = obj.listing.trip_count
-      currentCity = obj.listing
-      if current > max
-        max = current
-        maxCity = currentCity
-      end
+    Listing.all.max_by { |listing|
+      listing.trip_count
     }
-    maxCity
+    # max = 0
+    # maxCity = []
+    # current = 0
+    # currentCity= []
+    # Trip.all.each { |obj|
+    #   current = obj.listing.trip_count
+    #   currentCity = obj.listing
+    #   if current > max
+    #     max = current
+    #     maxCity = currentCity
+    #   end
+    # }
+    # maxCity
   end
 end

@@ -3,6 +3,7 @@ class Guest
   @@all = []
   def initialize(name)
     @name = name
+    @@all < self
   end
   def self.all
     @@all
@@ -17,9 +18,9 @@ class Guest
     self.trips.count
   end
   def self.pro_traveler
-    Trip.all.select { |obj| obj.guest.trip_count > 1 }
+    Guest.all.select { |obj| obj.trip_count > 1 }
   end
   def self.find_all_by_name(gname)
-    Trip.all.select { |obj| obj.guest.name == gname}
+    Guest.all.select { |obj| obj.name == gname}
   end
 end
